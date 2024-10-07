@@ -18,10 +18,5 @@ pipeline {
                 sh 'ls -la'
             }
         }
-        stage('Check Git') {
-            steps {
-                echo 'GitUpdated!'
-            }
-        }
     }
 }
