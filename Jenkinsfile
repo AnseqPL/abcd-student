@@ -17,6 +17,12 @@ pipeline {
                 echo 'Hello!'
                 sh 'ls -la'
             }
+        }
+        stage('Check Git') {
+            steps {
+                echo 'GitUpdated!'
+            }
+        }
         stage('[ZAP] Baseline passive-scan') {
             steps {
                 sh '''
