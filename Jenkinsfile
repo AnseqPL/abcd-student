@@ -32,7 +32,7 @@ pipeline {
                     sleep 5
                 '''
                  sh '''
-                    docker run --name zap --rm \\
+                    docker run --name zaproxy --rm \\
                         --add-host=host.docker.internal:host-gateway \\
                         -v /path/to/passive_scan.yaml:/zap/wrk/:rw
                         -t ghcr.io/zaproxy/zaproxy:stable bash -c \\
