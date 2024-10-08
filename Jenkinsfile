@@ -21,7 +21,7 @@ pipeline {
                     sleep 5
                 '''
                  sh '''
-                    docker run --name zap --rm \
+                    docker run --name zap --rm -e "REPORT_TITLE"=$REPORT_TITLE" -v "$(pwd):/zap/wrk" \
                     --add-host=host.docker.internal:host-gateway \
                     -v /home/adam/DevSecOps/abcd-student/.zap/passive.yaml:/zap/wrk/passive_scan.yaml:rw \
                     -t ghcr.io/zaproxy/zaproxy:stable bash -c \
