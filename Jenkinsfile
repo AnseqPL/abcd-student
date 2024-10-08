@@ -42,7 +42,7 @@ pipeline {
                 docker stop juice-shop || true
             '''
             defectDojoPublisher(
-                    artifact: '/home/adam/Downloads/Reports/zap_xml_report.xml', 
+                    artifact: '/tmp/zap_xml_report.xml', 
                     productName: 'Juice Shop', 
                     scanType: 'ZAP Scan', 
                     engagementName: 'adam.natonik@gmail.com')
