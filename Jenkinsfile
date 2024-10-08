@@ -24,7 +24,7 @@ pipeline {
                     docker run --name zap --rm \
                     --add-host=host.docker.internal:host-gateway \
                     -v /home/adam/DevSecOps/abcd-student/.zap/passive.yaml:/zap/wrk/passive_scan.yaml:rw \
-                    -v /home/adam/Downloads/reports/:/zap/wrk/reports \
+                    -v /home/adam/DevSecOps/abcd-student/.zap/reports:/zap/wrk/reports \
                     -t ghcr.io/zaproxy/zaproxy:stable bash -c \
                     "zap.sh -cmd -addonupdate && \
                     zap.sh -cmd -addoninstall communityScripts && \
@@ -42,7 +42,7 @@ pipeline {
                 docker stop juice-shop || true
             '''
             defectDojoPublisher(
-                artifact: '/home/adam/Downloads/reports/zap_xml_report.xml', 
+                artifact: 'home/adam/DevSecOps/abcd-student/.zap/reports/reports/zap_xml_report.xml', 
                 productName: 'Juice Shop', 
                 scanType: 'ZAP Scan', 
                 engagementName: 'adam.natonik@gmail.com')
