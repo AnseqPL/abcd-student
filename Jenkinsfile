@@ -12,7 +12,7 @@ pipeline {
                 }
             }
         }
-        stage('[ZAP] Baseline passive-scan') {
+        stage('ZAP Scan') {
             steps {
                 sh '''
                     docker run --name juice-shop -d --rm \\
@@ -40,9 +40,7 @@ pipeline {
             sh '''
                 docker stop juice-shop
             '''
-        }
-        always {
-                defectDojoPublisher(artifact: '/zap/wrk/reports/zap_xml_report.xml', 
+            defectDojoPublisher(artifact: '/home/adam/Downloads/reports/zap_xml_report.xml', 
                     productName: 'Juice Shop', 
                     scanType: 'ZAP Scan', 
                     engagementName: 'adam.natonik@gmail.com')
