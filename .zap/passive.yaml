@@ -34,4 +34,4 @@ jobs:
       template: traditional-xml
       reportDir: /zap/wrk/reports
       reportFile: zap_xml_report
-      reportTitle: "ZAP Passive"
+      reportTitle: "ZAP Passive Scan"
