@@ -45,7 +45,7 @@ pipeline {
                     artifact: '/home/adam/Downloads/Reports/zap_xml_report.xml', 
                     productName: 'Juice Shop', 
                     scanType: 'ZAP Scan', 
-                    engagementName: 'adam.natonik@gmail.com'
+                    engagementName: 'adam.natonik@gmail.com')
             }
         }
     }
