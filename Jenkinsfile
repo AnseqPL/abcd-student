@@ -41,11 +41,6 @@ pipeline {
             sh '''
                 docker stop juice-shop || true
             '''
-            defectDojoPublisher(
-                artifact: 'home/adam/DevSecOps/abcd-student/.zap/reports/reports/zap_xml_report.xml', 
-                productName: 'Juice Shop', 
-                scanType: 'ZAP Scan', 
-                engagementName: 'adam.natonik@gmail.com')
             }
         }
     }
