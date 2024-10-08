@@ -37,9 +37,15 @@ pipeline {
     }
     post {
         always {
+                defectDojoPublisher(artifact: '/zap/wrk/reports/zap_xml_report.xml', 
+                    productName: 'Juice Shop', 
+                    scanType: 'ZAP Scan', 
+                    engagementName: 'adam.natonik@gmail.com')
+            }
+        always {
             sh '''
-                docker stop zap juice-shop
+                docker stop juice-shop
             '''
-        }
+        }    
     }
 }
