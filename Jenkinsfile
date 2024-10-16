@@ -25,6 +25,9 @@ pipeline {
                 sh '''
                     osv-scanner scan --lockfile package-lock.json --format json --output sca-osv-scanner.json
                 '''
+                sh '''
+                    cat sca-osv-scanner.json
+                '''
             }
         }
     }
