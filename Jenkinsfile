@@ -19,11 +19,11 @@ pipeline {
                     sleep 5
                 '''
                 sh '''
-                    rm /tmp/sca-osv-scanner.json
+                    ls -laht /tmp/sca-osv-scanner.json
                 '''
-                sh '''
-                    osv-scanner scan --lockfile package-lock.json --format json --output /tmp/sca-osv-scanner.json
-                '''
+                // sh '''
+                //     osv-scanner scan --lockfile package-lock.json --format json --output /tmp/sca-osv-scanner.json
+                // '''
                 sh '''
                     cat /tmp/sca-osv-scanner.json
                 '''
