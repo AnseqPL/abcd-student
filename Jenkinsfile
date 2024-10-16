@@ -12,7 +12,7 @@ pipeline {
                 }
             }
         }
-        stage('ZAP Scan') {
+        stage('Run JShop') {
             steps {
                 sh '''
                     docker run --name juice-shop -d --rm \\
@@ -20,6 +20,11 @@ pipeline {
                         bkimminich/juice-shop
                     sleep 5
                 '''
+<<<<<<< HEAD
+                
+                sh '''
+                    osv-scanner scan --lockfile package-lock.json --format json --output results/sca-osv-scanner.json
+=======
                  sh '''
                     docker run --name zap --rm \
                     --add-host=host.docker.internal:host-gateway \
@@ -31,21 +36,8 @@ pipeline {
                     zap.sh -cmd -addoninstall pscanrulesAlpha && \
                     zap.sh -cmd -addoninstall pscanrulesBeta && \
                     zap.sh -cmd -autorun /zap/wrk/passive_scan.yaml"
+>>>>>>> 3285e6badfffc7eff9fa8d2589057f43c9422645
                 '''
-            }
-        }
-    }
-    post {
-        always {
-            script{
-            sh '''
-                docker stop juice-shop || true
-            '''
-            defectDojoPublisher(
-                    artifact: '/tmp/zap_xml_report.xml', 
-                    productName: 'Juice Shop', 
-                    scanType: 'ZAP Scan', 
-                    engagementName: 'adam.natonik@gmail.com')
             }
         }
     }
