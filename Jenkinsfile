@@ -17,12 +17,13 @@ pipeline {
                 sh '''
                     docker run --name juice-shop -d --rm \\
                         -p 3000:3000 \\
-                        bkimminich/juice-shop
+                        bkimminich/juice-shop\\
+                        -v 
                     sleep 5
                 '''
                 
                 sh '''
-                    osv-scanner scan --lockfile package-lock.json --format json --output ./results/sca-osv-scanner.json
+                    osv-scanner scan --lockfile package-lock.json --format json --output sca-osv-scanner.json
                 '''
             }
         }
