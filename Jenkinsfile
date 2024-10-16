@@ -15,16 +15,14 @@ pipeline {
         stage('SCA') {
             steps {
                 sh '''
-                    docker run --name juice-shop -d --rm \\
-                        -p 3000:3000 \\
-                        bkimminich/juice-shop 
+                    docker run --name juice-shop -d --rm -p 3000:3000 bkimminich/juice-shop
                     sleep 5
                 '''
                 sh '''
-                    osv-scanner scan --lockfile package-lock.json --format json --output /tmp/sca-osv-scanner.json
+                    osv-scanner scan --lockfile package-lock.json --format json --output sca-osv-scanner.json
                 '''
                 sh '''
-                    cat /tmp/sca-osv-scanner.json
+                    cat sca-osv-scanner.json
                 '''
             }
         }
