@@ -22,12 +22,12 @@ pipeline {
             }
         }
     }
-    // post {
-    //         always {
-    //             defectDojoPublisher(artifact: '/tmp/trufflehog_report.json', 
-    //                 productName: 'Juice Shop', 
-    //                 scanType: 'Trufflehog Scan', 
-    //                 engagementName: 'adam.natonik@gmail.com')
-    //         }
-    //     }
+    post {
+            always {
+                defectDojoPublisher(artifact: '/tmp/trufflehog_report.json', 
+                    productName: 'Juice Shop', 
+                    scanType: 'Trufflehog Scan', 
+                    engagementName: 'adam.natonik@gmail.com')
+            }
+        }
 }
