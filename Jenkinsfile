@@ -12,7 +12,7 @@ pipeline {
                 }
             }
         }
-        stage('SCA') {
+        stage('TruffleHog') {
             steps {
                 // sh '''
                 //     docker run --name juice-shop -d --rm -p 3000:3000 bkimminich/juice-shop
@@ -30,12 +30,12 @@ pipeline {
             }
         }
     }
-    post {
-            always {
-                defectDojoPublisher(artifact: '/tmp/sca-osv-scanner.json', 
-                    productName: 'Juice Shop', 
-                    scanType: 'OSV Scan', 
-                    engagementName: 'adam.natonik@gmail.com')
-            }
-        }
+    // post {
+    //         always {
+    //             defectDojoPublisher(artifact: '/tmp/sca-osv-scanner.json', 
+    //                 productName: 'Juice Shop', 
+    //                 scanType: 'Trufflehog Scan', 
+    //                 engagementName: 'adam.natonik@gmail.com')
+    //         }
+    //     }
 }
