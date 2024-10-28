@@ -15,7 +15,6 @@ pipeline {
         stage('TruffleHog Scan on GitHub Repo') {
             steps {
                 script {
-                    // Uruchom Trufflehog na zdalnym repozytorium
                     sh '''
                         docker run --rm trufflesecurity/trufflehog:latest git https://github.com/AnseqPL/abcd-student.git > /tmp/trufflehog_report.json
                     '''
@@ -23,12 +22,12 @@ pipeline {
             }
         }
     }
-    // post {
-    //         always {
-    //             defectDojoPublisher(artifact: '/tmp/sca-osv-scanner.json', 
-    //                 productName: 'Juice Shop', 
-    //                 scanType: 'Trufflehog Scan', 
-    //                 engagementName: 'adam.natonik@gmail.com')
-    //         }
-    //     }
+    post {
+            always {
+                defectDojoPublisher(artifact: '/tmp/trufflehog_report.json', 
+                    productName: 'Juice Shop', 
+                    scanType: 'Trufflehog Scan', 
+                    engagementName: 'adam.natonik@gmail.com')
+            }
+        }
 }
