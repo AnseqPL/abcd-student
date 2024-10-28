@@ -17,7 +17,7 @@ pipeline {
                 script {
                     // Uruchom Trufflehog na zdalnym repozytorium
                     sh '''
-                        docker run --rm trufflesecurity/trufflehog:latest git https://github.com/AnseqPL/abcd-student.git > trufflehog_report.json
+                        docker run --rm trufflesecurity/trufflehog:latest git https://github.com/AnseqPL/abcd-student.git > /tmp/trufflehog_report.json
                     '''
                 }
             }
