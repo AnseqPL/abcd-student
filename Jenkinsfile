@@ -14,19 +14,12 @@ pipeline {
         }
         stage('TruffleHog') {
             steps {
-                // sh '''
-                //     docker run --name juice-shop -d --rm -p 3000:3000 bkimminich/juice-shop
-                //     sleep 5
-                // '''
-                sh '''
-                    ls -laht /tmp/
-                '''
-                // sh '''
-                //     osv-scanner scan --lockfile package-lock.json --format json --output /tmp/sca-osv-scanner.json
-                // '''
-                // sh '''
-                //     cat /tmp/sca-osv-scanner.json
-                // '''
+                script {
+                    // Uruchamiamy Trufflehog w kontenerze Docker
+                    sh '''
+                        docker run --rm -v "$PWD:/repo" trufflesecurity/trufflehog:latest git file:///repo > trufflehog_report.json
+                    '''
+                }
             }
         }
     }
