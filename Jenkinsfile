@@ -12,16 +12,18 @@ pipeline {
                 }
             }
         }
-        stage('TruffleHog') {
+        stages {
+        stage('TruffleHog Scan on GitHub Repo') {
             steps {
                 script {
-                    // Uruchamiamy Trufflehog w kontenerze Docker
+                    // Uruchom Trufflehog na zdalnym repozytorium
                     sh '''
-                        docker run --rm -v "$PWD:/repo" trufflesecurity/trufflehog:latest git file:///repo > trufflehog_report.json
+                        docker run --rm trufflesecurity/trufflehog:latest git https://github.com/AnseqPL/abcd-student.git > trufflehog_report.json
                     '''
                 }
             }
         }
+    }
     }
     // post {
     //         always {
