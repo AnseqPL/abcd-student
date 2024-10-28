@@ -16,18 +16,18 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        docker run --rm trufflesecurity/trufflehog:latest git https://github.com/AnseqPL/abcd-student.git > /tmp/trufflehog_report.json
+                        docker run --rm trufflesecurity/trufflehog:latest --only-verified --json git https://github.com/AnseqPL/abcd-student.git > /tmp/trufflehog_report.json
                     '''
                 }
             }
         }
     }
-    post {
-            always {
-                defectDojoPublisher(artifact: '/tmp/trufflehog_report.json', 
-                    productName: 'Juice Shop', 
-                    scanType: 'Trufflehog Scan', 
-                    engagementName: 'adam.natonik@gmail.com')
-            }
-        }
+    // post {
+    //         always {
+    //             defectDojoPublisher(artifact: '/tmp/trufflehog_report.json', 
+    //                 productName: 'Juice Shop', 
+    //                 scanType: 'Trufflehog Scan', 
+    //                 engagementName: 'adam.natonik@gmail.com')
+    //         }
+    //     }
 }
