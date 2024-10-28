@@ -12,7 +12,6 @@ pipeline {
                 }
             }
         }
-        stages {
         stage('TruffleHog Scan on GitHub Repo') {
             steps {
                 script {
@@ -23,7 +22,6 @@ pipeline {
                 }
             }
         }
-    }
     }
     // post {
     //         always {
