@@ -8,6 +8,7 @@ pipeline {
             steps {
                 script {
                     cleanWs()
+                    // Pobranie kodu z GitHub
                     git credentialsId: 'github-pat', url: 'https://github.com/AnseqPL/abcd-student.git', branch: 'main'
                 }
             }
@@ -16,10 +17,17 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        docker run --rm -v $PWD:/src semgrep/semgrep:latest semgrep --config auto /src
+                        # Uruchomienie skanowania Semgrep na pobranym kodzie
+                        semgrep --config=auto .
                     '''
                 }
             }
+        }
+    }
+    post {
+        always {
+            // Opcjonalna akcja po zakończeniu pipeline, np. wysyłanie wyników lub raportów
+            echo "Pipeline zakończony"
         }
     }
 }
