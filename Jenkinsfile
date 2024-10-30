@@ -25,9 +25,11 @@ pipeline {
         }
     }
     post {
-        always {
-            // Opcjonalna akcja po zakończeniu pipeline, np. wysyłanie wyników lub raportów
-            echo "Pipeline zakończony"
+            always {
+                defectDojoPublisher(artifact: '/tmp/semgrep.json', 
+                    productName: 'Juice Shop', 
+                    scanType: 'Semgrep JSON Report', 
+                    engagementName: 'adam.natonik@gmail.com')
+            }
         }
-    }
 }
