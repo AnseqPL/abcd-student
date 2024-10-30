@@ -8,7 +8,6 @@ pipeline {
             steps {
                 script {
                     cleanWs()
-                    // Pobranie kodu z GitHub
                     git credentialsId: 'github-pat', url: 'https://github.com/AnseqPL/abcd-student.git', branch: 'main'
                 }
             }
