@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        docker run --rm -v $(pwd):/src returntocorp/semgrep semgrep scan --config=p/ci /src
+                        docker run --rm -v $PWD:/src semgrep/semgrep:latest semgrep --config auto /src
                     '''
                 }
             }
