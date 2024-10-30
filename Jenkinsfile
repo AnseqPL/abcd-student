@@ -12,22 +12,14 @@ pipeline {
                 }
             }
         }
-        stage('TruffleHog Scan on GitHub Repo') {
+        stage('Semgrep Scan') {
             steps {
                 script {
                     sh '''
-                        docker run --rm trufflesecurity/trufflehog:latest --only-verified --json git https://github.com/AnseqPL/abcd-student.git > /tmp/trufflehog_report.json
+                        docker run --rm -v $(pwd):/src returntocorp/semgrep semgrep scan --config=p/ci /src
                     '''
                 }
             }
         }
     }
-    post {
-            always {
-                defectDojoPublisher(artifact: '/tmp/trufflehog_report.json', 
-                    productName: 'Juice Shop', 
-                    scanType: 'Trufflehog Scan', 
-                    engagementName: 'adam.natonik@gmail.com')
-            }
-        }
 }
