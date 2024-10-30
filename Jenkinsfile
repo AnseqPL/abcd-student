@@ -18,7 +18,7 @@ pipeline {
                 script {
                     sh '''
                         # Uruchomienie skanowania Semgrep na pobranym kodzie
-                        semgrep --config=auto .
+                        semgrep --config=auto . --json --json-output=/tmp/semgrep.json
                     '''
                 }
             }
